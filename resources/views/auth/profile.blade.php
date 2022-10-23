@@ -16,11 +16,21 @@
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success">
+                    <strong>{{$message}}</strong>
+                </div>
+            @endif
+            @if ($message = Session::get('error'))
+                <div class="alert alert-danger">
+                    <strong>{{$message}}</strong>
+                </div>
+            @endif
             <div class="row">
+
                 <div class="col-lg-6">
                     <div class="card">
-
-                        <form action="{{ route('profile.update') }}" method="POST">
+                        <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -52,6 +62,15 @@
                                         </div>
                                     </div>
                                     @error('email')
+                                    <span class="error invalid-feedback">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <input id="image" type="file" class="form-control-file  @error('image') is-invalid @enderror" name="image" autocomplete="image">
+                                    @error('image')
                                     <span class="error invalid-feedback">
                                         {{ $message }}
                                     </span>

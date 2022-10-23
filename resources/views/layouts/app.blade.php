@@ -59,7 +59,7 @@
             <img src="{{ asset('images/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">{{ config('app.name', 'Laravel') }}</span>
         </a>
 
         @include('layouts.navigation')
@@ -85,10 +85,10 @@
     <footer class="main-footer">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-            Anything you want
+            {{ config('app.name', 'Laravel') }} v1.0
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2022 <a href="">{{ config('app.name', 'Laravel') }}</a>.</strong> All rights reserved.
     </footer>
 </div>
 <!-- ./wrapper -->

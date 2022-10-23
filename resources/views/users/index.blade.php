@@ -19,10 +19,6 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <div class="alert alert-info">
-                        Sample table page
-                    </div>
-
                     <div class="card">
                         <div class="card-body p-0">
 
@@ -36,7 +32,11 @@
                                 <tbody>
                                 @foreach($users as $user)
                                     <tr>
-                                        <td>{{ $user->name }}</td>
+                                        <td>
+                                            <img src="{{ $user->image }}" class="img-circle elevation-2" alt="User Image" width="40">
+                                            &nbsp;&nbsp;&nbsp;
+                                            {{ $user->name }}
+                                        </td>
                                         <td>{{ $user->email }}</td>
                                     </tr>
                                 @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileUpdateRequest;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -16,6 +17,13 @@ class ProfileController extends Controller
     {
         if ($request->password) {
             auth()->user()->update(['password' => Hash::make($request->password)]);
+        }
+
+        if ($request->image) {
+            $imagePath = $request->image->store('profiles', 'public');
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(300, 300);
+            $image->save();
+            auth()->user()->update(['image' => 'storage/' . $imagePath]);
         }
 
         auth()->user()->update([

@@ -13,6 +13,7 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'string', 'max:255', Rule::unique('users')->ignore(Auth::user())],
+            'image' => ['nullable', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
             'password' => ['nullable', 'string', 'confirmed', 'min:8'],
         ];
     }
@@ -26,6 +27,10 @@ class ProfileUpdateRequest extends FormRequest
     {
         if ($this->password == null) {
             $this->request->remove('password');
+        }
+
+        if ($this->image == null) {
+            $this->request->remove('image');
         }
     }
 }
